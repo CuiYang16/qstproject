@@ -1,0 +1,33 @@
+package com.qst.pojo;
+
+public class Type {
+    private Integer typeId;
+
+    private String typeName;
+
+    private byte[] typeDescribe;
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName == null ? null : typeName.trim();
+    }
+
+    public byte[] getTypeDescribe() {
+        return typeDescribe;
+    }
+
+    public void setTypeDescribe(byte[] typeDescribe) {
+        this.typeDescribe = typeDescribe;
+    }
+}

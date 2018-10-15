@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.pojo.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="goods_describe" property="goodsDescribe" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="goods_createtime" property="goodsCreatetime" jdbcType="TIMESTAMP" />
+    <result column="goods_price" property="goodsPrice" jdbcType="INTEGER" />
+    <result column="goods_amount" property="goodsAmount" jdbcType="INTEGER" />
+    <result column="goods_coverimg" property="goodsCoverimg" jdbcType="VARCHAR" />
+    <result column="goods_img1" property="goodsImg1" jdbcType="VARCHAR" />
+    <result column="goods_img2" property="goodsImg2" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qst.pojo.GoodsWithBLOBs" extends="BaseResultMap" >
+    <result column="goods_name" property="goodsName" jdbcType="VARBINARY" />
+    <result column="goods_img3" property="goodsImg3" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    goods_id, goods_describe, type_id, goods_createtime, goods_price, goods_amount, goods_coverimg, 
+    goods_img1, goods_img2, user_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    goods_name, goods_img3
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qst.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qst.pojo.GoodsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qst.pojo.GoodsExample" >
+    delete from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qst.pojo.GoodsWithBLOBs" >
+    insert into goods (goods_id, goods_describe, type_id, 
+      goods_createtime, goods_price, goods_amount, 
+      goods_coverimg, goods_img1, goods_img2, 
+      user_id, goods_name, goods_img3
+      )
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsDescribe,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{goodsCreatetime,jdbcType=TIMESTAMP}, #{goodsPrice,jdbcType=INTEGER}, #{goodsAmount,jdbcType=INTEGER}, 
+      #{goodsCoverimg,jdbcType=VARCHAR}, #{goodsImg1,jdbcType=VARCHAR}, #{goodsImg2,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARBINARY}, #{goodsImg3,jdbcType=VARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.pojo.GoodsWithBLOBs" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsDescribe != null" >
+        goods_describe,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="goodsCreatetime != null" >
+        goods_createtime,
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price,
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount,
+      </if>
+      <if test="goodsCoverimg != null" >
+        goods_coverimg,
+      </if>
+      <if test="goodsImg1 != null" >
+        goods_img1,
+      </if>
+      <if test="goodsImg2 != null" >
+        goods_img2,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="goodsName != null" >
+        goods_name,
+      </if>
+      <if test="goodsImg3 != null" >
+        goods_img3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDescribe != null" >
+        #{goodsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCreatetime != null" >
+        #{goodsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        #{goodsAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCoverimg != null" >
+        #{goodsCoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg1 != null" >
+        #{goodsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg2 != null" >
+        #{goodsImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARBINARY},
+      </if>
+      <if test="goodsImg3 != null" >
+        #{goodsImg3,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qst.pojo.GoodsExample" resultType="java.lang.Integer" >
+    select count(*) from goods
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods
+    <set >
+      <if test="record.goodsId != null" >
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsDescribe != null" >
+        goods_describe = #{record.goodsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCreatetime != null" >
+        goods_createtime = #{record.goodsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsPrice != null" >
+        goods_price = #{record.goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsAmount != null" >
+        goods_amount = #{record.goodsAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsCoverimg != null" >
+        goods_coverimg = #{record.goodsCoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImg1 != null" >
+        goods_img1 = #{record.goodsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsImg2 != null" >
+        goods_img2 = #{record.goodsImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null" >
+        goods_name = #{record.goodsName,jdbcType=VARBINARY},
+      </if>
+      <if test="record.goodsImg3 != null" >
+        goods_img3 = #{record.goodsImg3,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update goods
+    set goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_describe = #{record.goodsDescribe,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      goods_createtime = #{record.goodsCreatetime,jdbcType=TIMESTAMP},
+      goods_price = #{record.goodsPrice,jdbcType=INTEGER},
+      goods_amount = #{record.goodsAmount,jdbcType=INTEGER},
+      goods_coverimg = #{record.goodsCoverimg,jdbcType=VARCHAR},
+      goods_img1 = #{record.goodsImg1,jdbcType=VARCHAR},
+      goods_img2 = #{record.goodsImg2,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARBINARY},
+      goods_img3 = #{record.goodsImg3,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods
+    set goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_describe = #{record.goodsDescribe,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      goods_createtime = #{record.goodsCreatetime,jdbcType=TIMESTAMP},
+      goods_price = #{record.goodsPrice,jdbcType=INTEGER},
+      goods_amount = #{record.goodsAmount,jdbcType=INTEGER},
+      goods_coverimg = #{record.goodsCoverimg,jdbcType=VARCHAR},
+      goods_img1 = #{record.goodsImg1,jdbcType=VARCHAR},
+      goods_img2 = #{record.goodsImg2,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.pojo.GoodsWithBLOBs" >
+    update goods
+    <set >
+      <if test="goodsDescribe != null" >
+        goods_describe = #{goodsDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCreatetime != null" >
+        goods_createtime = #{goodsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsPrice != null" >
+        goods_price = #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsAmount != null" >
+        goods_amount = #{goodsAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goodsCoverimg != null" >
+        goods_coverimg = #{goodsCoverimg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg1 != null" >
+        goods_img1 = #{goodsImg1,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsImg2 != null" >
+        goods_img2 = #{goodsImg2,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+        goods_name = #{goodsName,jdbcType=VARBINARY},
+      </if>
+      <if test="goodsImg3 != null" >
+        goods_img3 = #{goodsImg3,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.pojo.GoodsWithBLOBs" >
+    update goods
+    set goods_describe = #{goodsDescribe,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      goods_createtime = #{goodsCreatetime,jdbcType=TIMESTAMP},
+      goods_price = #{goodsPrice,jdbcType=INTEGER},
+      goods_amount = #{goodsAmount,jdbcType=INTEGER},
+      goods_coverimg = #{goodsCoverimg,jdbcType=VARCHAR},
+      goods_img1 = #{goodsImg1,jdbcType=VARCHAR},
+      goods_img2 = #{goodsImg2,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARBINARY},
+      goods_img3 = #{goodsImg3,jdbcType=VARBINARY}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.pojo.Goods" >
+    update goods
+    set goods_describe = #{goodsDescribe,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      goods_createtime = #{goodsCreatetime,jdbcType=TIMESTAMP},
+      goods_price = #{goodsPrice,jdbcType=INTEGER},
+      goods_amount = #{goodsAmount,jdbcType=INTEGER},
+      goods_coverimg = #{goodsCoverimg,jdbcType=VARCHAR},
+      goods_img1 = #{goodsImg1,jdbcType=VARCHAR},
+      goods_img2 = #{goodsImg2,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>

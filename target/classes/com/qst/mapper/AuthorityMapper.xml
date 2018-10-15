@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.mapper.AuthorityMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.pojo.Authority" >
+    <id column="authority_id" property="authorityId" jdbcType="INTEGER" />
+    <result column="authority_manage_goods" property="authorityManageGoods" jdbcType="CHAR" />
+    <result column="authority_manage_user" property="authorityManageUser" jdbcType="CHAR" />
+    <result column="authority_manage_order" property="authorityManageOrder" jdbcType="CHAR" />
+    <result column="authority_business" property="authorityBusiness" jdbcType="CHAR" />
+    <result column="authority_authorization" property="authorityAuthorization" jdbcType="CHAR" />
+    <result column="authority_super" property="authoritySuper" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    authority_id, authority_manage_goods, authority_manage_user, authority_manage_order, 
+    authority_business, authority_authorization, authority_super
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qst.pojo.AuthorityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from authority
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from authority
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from authority
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qst.pojo.AuthorityExample" >
+    delete from authority
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qst.pojo.Authority" >
+    insert into authority (authority_id, authority_manage_goods, authority_manage_user, 
+      authority_manage_order, authority_business, authority_authorization, 
+      authority_super)
+    values (#{authorityId,jdbcType=INTEGER}, #{authorityManageGoods,jdbcType=CHAR}, #{authorityManageUser,jdbcType=CHAR}, 
+      #{authorityManageOrder,jdbcType=CHAR}, #{authorityBusiness,jdbcType=CHAR}, #{authorityAuthorization,jdbcType=CHAR}, 
+      #{authoritySuper,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.pojo.Authority" >
+    insert into authority
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+      <if test="authorityManageGoods != null" >
+        authority_manage_goods,
+      </if>
+      <if test="authorityManageUser != null" >
+        authority_manage_user,
+      </if>
+      <if test="authorityManageOrder != null" >
+        authority_manage_order,
+      </if>
+      <if test="authorityBusiness != null" >
+        authority_business,
+      </if>
+      <if test="authorityAuthorization != null" >
+        authority_authorization,
+      </if>
+      <if test="authoritySuper != null" >
+        authority_super,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="authorityManageGoods != null" >
+        #{authorityManageGoods,jdbcType=CHAR},
+      </if>
+      <if test="authorityManageUser != null" >
+        #{authorityManageUser,jdbcType=CHAR},
+      </if>
+      <if test="authorityManageOrder != null" >
+        #{authorityManageOrder,jdbcType=CHAR},
+      </if>
+      <if test="authorityBusiness != null" >
+        #{authorityBusiness,jdbcType=CHAR},
+      </if>
+      <if test="authorityAuthorization != null" >
+        #{authorityAuthorization,jdbcType=CHAR},
+      </if>
+      <if test="authoritySuper != null" >
+        #{authoritySuper,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qst.pojo.AuthorityExample" resultType="java.lang.Integer" >
+    select count(*) from authority
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update authority
+    <set >
+      <if test="record.authorityId != null" >
+        authority_id = #{record.authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.authorityManageGoods != null" >
+        authority_manage_goods = #{record.authorityManageGoods,jdbcType=CHAR},
+      </if>
+      <if test="record.authorityManageUser != null" >
+        authority_manage_user = #{record.authorityManageUser,jdbcType=CHAR},
+      </if>
+      <if test="record.authorityManageOrder != null" >
+        authority_manage_order = #{record.authorityManageOrder,jdbcType=CHAR},
+      </if>
+      <if test="record.authorityBusiness != null" >
+        authority_business = #{record.authorityBusiness,jdbcType=CHAR},
+      </if>
+      <if test="record.authorityAuthorization != null" >
+        authority_authorization = #{record.authorityAuthorization,jdbcType=CHAR},
+      </if>
+      <if test="record.authoritySuper != null" >
+        authority_super = #{record.authoritySuper,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update authority
+    set authority_id = #{record.authorityId,jdbcType=INTEGER},
+      authority_manage_goods = #{record.authorityManageGoods,jdbcType=CHAR},
+      authority_manage_user = #{record.authorityManageUser,jdbcType=CHAR},
+      authority_manage_order = #{record.authorityManageOrder,jdbcType=CHAR},
+      authority_business = #{record.authorityBusiness,jdbcType=CHAR},
+      authority_authorization = #{record.authorityAuthorization,jdbcType=CHAR},
+      authority_super = #{record.authoritySuper,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.pojo.Authority" >
+    update authority
+    <set >
+      <if test="authorityManageGoods != null" >
+        authority_manage_goods = #{authorityManageGoods,jdbcType=CHAR},
+      </if>
+      <if test="authorityManageUser != null" >
+        authority_manage_user = #{authorityManageUser,jdbcType=CHAR},
+      </if>
+      <if test="authorityManageOrder != null" >
+        authority_manage_order = #{authorityManageOrder,jdbcType=CHAR},
+      </if>
+      <if test="authorityBusiness != null" >
+        authority_business = #{authorityBusiness,jdbcType=CHAR},
+      </if>
+      <if test="authorityAuthorization != null" >
+        authority_authorization = #{authorityAuthorization,jdbcType=CHAR},
+      </if>
+      <if test="authoritySuper != null" >
+        authority_super = #{authoritySuper,jdbcType=CHAR},
+      </if>
+    </set>
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.pojo.Authority" >
+    update authority
+    set authority_manage_goods = #{authorityManageGoods,jdbcType=CHAR},
+      authority_manage_user = #{authorityManageUser,jdbcType=CHAR},
+      authority_manage_order = #{authorityManageOrder,jdbcType=CHAR},
+      authority_business = #{authorityBusiness,jdbcType=CHAR},
+      authority_authorization = #{authorityAuthorization,jdbcType=CHAR},
+      authority_super = #{authoritySuper,jdbcType=CHAR}
+    where authority_id = #{authorityId,jdbcType=INTEGER}
+  </update>
+</mapper>
