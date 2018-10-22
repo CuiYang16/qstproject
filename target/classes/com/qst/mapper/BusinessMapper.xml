@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qst.mapper.BusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.qst.pojo.Business" >
+    <id column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
+    <result column="business_pwd" property="businessPwd" jdbcType="VARCHAR" />
+    <result column="business_time" property="businessTime" jdbcType="TIMESTAMP" />
+    <result column="business_img" property="businessImg" jdbcType="VARCHAR" />
+    <result column="business_realname" property="businessRealname" jdbcType="VARCHAR" />
+    <result column="business_identity" property="businessIdentity" jdbcType="VARCHAR" />
+    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="authority_id" property="authorityId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qst.pojo.Business" extends="BaseResultMap" >
+    <result column="business_address" property="businessAddress" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    business_id, business_name, business_pwd, business_time, business_img, business_realname, 
+    business_identity, business_type, user_id, authority_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    business_address
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qst.pojo.BusinessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qst.pojo.BusinessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from business
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from business
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qst.pojo.BusinessExample" >
+    delete from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qst.pojo.Business" >
+    insert into business (business_id, business_name, business_pwd, 
+      business_time, business_img, business_realname, 
+      business_identity, business_type, user_id, 
+      authority_id, business_address)
+    values (#{businessId,jdbcType=INTEGER}, #{businessName,jdbcType=VARCHAR}, #{businessPwd,jdbcType=VARCHAR}, 
+      #{businessTime,jdbcType=TIMESTAMP}, #{businessImg,jdbcType=VARCHAR}, #{businessRealname,jdbcType=VARCHAR}, 
+      #{businessIdentity,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{authorityId,jdbcType=INTEGER}, #{businessAddress,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qst.pojo.Business" >
+    insert into business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        business_id,
+      </if>
+      <if test="businessName != null" >
+        business_name,
+      </if>
+      <if test="businessPwd != null" >
+        business_pwd,
+      </if>
+      <if test="businessTime != null" >
+        business_time,
+      </if>
+      <if test="businessImg != null" >
+        business_img,
+      </if>
+      <if test="businessRealname != null" >
+        business_realname,
+      </if>
+      <if test="businessIdentity != null" >
+        business_identity,
+      </if>
+      <if test="businessType != null" >
+        business_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="authorityId != null" >
+        authority_id,
+      </if>
+      <if test="businessAddress != null" >
+        business_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="businessId != null" >
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="businessName != null" >
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPwd != null" >
+        #{businessPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="businessTime != null" >
+        #{businessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessImg != null" >
+        #{businessImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessRealname != null" >
+        #{businessRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIdentity != null" >
+        #{businessIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="authorityId != null" >
+        #{authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="businessAddress != null" >
+        #{businessAddress,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qst.pojo.BusinessExample" resultType="java.lang.Integer" >
+    select count(*) from business
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update business
+    <set >
+      <if test="record.businessId != null" >
+        business_id = #{record.businessId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessName != null" >
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessPwd != null" >
+        business_pwd = #{record.businessPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessTime != null" >
+        business_time = #{record.businessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessImg != null" >
+        business_img = #{record.businessImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessRealname != null" >
+        business_realname = #{record.businessRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessIdentity != null" >
+        business_identity = #{record.businessIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessType != null" >
+        business_type = #{record.businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.authorityId != null" >
+        authority_id = #{record.authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessAddress != null" >
+        business_address = #{record.businessAddress,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update business
+    set business_id = #{record.businessId,jdbcType=INTEGER},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      business_pwd = #{record.businessPwd,jdbcType=VARCHAR},
+      business_time = #{record.businessTime,jdbcType=TIMESTAMP},
+      business_img = #{record.businessImg,jdbcType=VARCHAR},
+      business_realname = #{record.businessRealname,jdbcType=VARCHAR},
+      business_identity = #{record.businessIdentity,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      authority_id = #{record.authorityId,jdbcType=INTEGER},
+      business_address = #{record.businessAddress,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update business
+    set business_id = #{record.businessId,jdbcType=INTEGER},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      business_pwd = #{record.businessPwd,jdbcType=VARCHAR},
+      business_time = #{record.businessTime,jdbcType=TIMESTAMP},
+      business_img = #{record.businessImg,jdbcType=VARCHAR},
+      business_realname = #{record.businessRealname,jdbcType=VARCHAR},
+      business_identity = #{record.businessIdentity,jdbcType=VARCHAR},
+      business_type = #{record.businessType,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      authority_id = #{record.authorityId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.pojo.Business" >
+    update business
+    <set >
+      <if test="businessName != null" >
+        business_name = #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPwd != null" >
+        business_pwd = #{businessPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="businessTime != null" >
+        business_time = #{businessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessImg != null" >
+        business_img = #{businessImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessRealname != null" >
+        business_realname = #{businessRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIdentity != null" >
+        business_identity = #{businessIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="businessType != null" >
+        business_type = #{businessType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="authorityId != null" >
+        authority_id = #{authorityId,jdbcType=INTEGER},
+      </if>
+      <if test="businessAddress != null" >
+        business_address = #{businessAddress,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.pojo.Business" >
+    update business
+    set business_name = #{businessName,jdbcType=VARCHAR},
+      business_pwd = #{businessPwd,jdbcType=VARCHAR},
+      business_time = #{businessTime,jdbcType=TIMESTAMP},
+      business_img = #{businessImg,jdbcType=VARCHAR},
+      business_realname = #{businessRealname,jdbcType=VARCHAR},
+      business_identity = #{businessIdentity,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      authority_id = #{authorityId,jdbcType=INTEGER},
+      business_address = #{businessAddress,jdbcType=VARBINARY}
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qst.pojo.Business" >
+    update business
+    set business_name = #{businessName,jdbcType=VARCHAR},
+      business_pwd = #{businessPwd,jdbcType=VARCHAR},
+      business_time = #{businessTime,jdbcType=TIMESTAMP},
+      business_img = #{businessImg,jdbcType=VARCHAR},
+      business_realname = #{businessRealname,jdbcType=VARCHAR},
+      business_identity = #{businessIdentity,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      authority_id = #{authorityId,jdbcType=INTEGER}
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </update>
+</mapper>

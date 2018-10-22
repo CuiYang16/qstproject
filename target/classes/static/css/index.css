@@ -1,0 +1,10 @@
+@charset "UTF-8";
+#carousel-example-generic{
+	border-top: 1px solid #d5403c;
+	padding-top: 0.1%;
+}
+
+#all{
+	margin-left: 2%;
+	margin-right: 2%;
+}

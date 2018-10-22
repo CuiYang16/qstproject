@@ -9,13 +9,10 @@
     <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
     <result column="user_address" property="userAddress" jdbcType="VARCHAR" />
     <result column="user_img" property="userImg" jdbcType="VARCHAR" />
-    <result column="business_credit" property="businessCredit" jdbcType="INTEGER" />
-    <result column="business_type" property="businessType" jdbcType="VARCHAR" />
     <result column="authority_id" property="authorityId" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.qst.pojo.UserWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.qst.pojo.User" extends="BaseResultMap" >
     <result column="user_phone" property="userPhone" jdbcType="VARBINARY" />
-    <result column="business_realname" property="businessRealname" jdbcType="VARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,11 +73,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_name, user_pwd, user_time, user_nickname, user_address, user_img, business_credit, 
-    business_type, authority_id
+    user_id, user_name, user_pwd, user_time, user_nickname, user_address, user_img, authority_id
   </sql>
   <sql id="Blob_Column_List" >
-    user_phone, business_realname
+    user_phone
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.qst.pojo.UserExample" >
     select
@@ -130,19 +126,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qst.pojo.UserWithBLOBs" >
+  <insert id="insert" parameterType="com.qst.pojo.User" >
     insert into user (user_id, user_name, user_pwd, 
       user_time, user_nickname, user_address, 
-      user_img, business_credit, business_type, 
-      authority_id, user_phone, business_realname
+      user_img, authority_id, user_phone
       )
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
       #{userTime,jdbcType=TIMESTAMP}, #{userNickname,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
-      #{userImg,jdbcType=VARCHAR}, #{businessCredit,jdbcType=INTEGER}, #{businessType,jdbcType=VARCHAR}, 
-      #{authorityId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARBINARY}, #{businessRealname,jdbcType=VARBINARY}
+      #{userImg,jdbcType=VARCHAR}, #{authorityId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.qst.pojo.UserWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.qst.pojo.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -166,20 +160,11 @@
       <if test="userImg != null" >
         user_img,
       </if>
-      <if test="businessCredit != null" >
-        business_credit,
-      </if>
-      <if test="businessType != null" >
-        business_type,
-      </if>
       <if test="authorityId != null" >
         authority_id,
       </if>
       <if test="userPhone != null" >
         user_phone,
-      </if>
-      <if test="businessRealname != null" >
-        business_realname,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -204,20 +189,11 @@
       <if test="userImg != null" >
         #{userImg,jdbcType=VARCHAR},
       </if>
-      <if test="businessCredit != null" >
-        #{businessCredit,jdbcType=INTEGER},
-      </if>
-      <if test="businessType != null" >
-        #{businessType,jdbcType=VARCHAR},
-      </if>
       <if test="authorityId != null" >
         #{authorityId,jdbcType=INTEGER},
       </if>
       <if test="userPhone != null" >
         #{userPhone,jdbcType=VARBINARY},
-      </if>
-      <if test="businessRealname != null" >
-        #{businessRealname,jdbcType=VARBINARY},
       </if>
     </trim>
   </insert>
@@ -251,20 +227,11 @@
       <if test="record.userImg != null" >
         user_img = #{record.userImg,jdbcType=VARCHAR},
       </if>
-      <if test="record.businessCredit != null" >
-        business_credit = #{record.businessCredit,jdbcType=INTEGER},
-      </if>
-      <if test="record.businessType != null" >
-        business_type = #{record.businessType,jdbcType=VARCHAR},
-      </if>
       <if test="record.authorityId != null" >
         authority_id = #{record.authorityId,jdbcType=INTEGER},
       </if>
       <if test="record.userPhone != null" >
         user_phone = #{record.userPhone,jdbcType=VARBINARY},
-      </if>
-      <if test="record.businessRealname != null" >
-        business_realname = #{record.businessRealname,jdbcType=VARBINARY},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -280,11 +247,8 @@
       user_nickname = #{record.userNickname,jdbcType=VARCHAR},
       user_address = #{record.userAddress,jdbcType=VARCHAR},
       user_img = #{record.userImg,jdbcType=VARCHAR},
-      business_credit = #{record.businessCredit,jdbcType=INTEGER},
-      business_type = #{record.businessType,jdbcType=VARCHAR},
       authority_id = #{record.authorityId,jdbcType=INTEGER},
-      user_phone = #{record.userPhone,jdbcType=VARBINARY},
-      business_realname = #{record.businessRealname,jdbcType=VARBINARY}
+      user_phone = #{record.userPhone,jdbcType=VARBINARY}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -298,14 +262,12 @@
       user_nickname = #{record.userNickname,jdbcType=VARCHAR},
       user_address = #{record.userAddress,jdbcType=VARCHAR},
       user_img = #{record.userImg,jdbcType=VARCHAR},
-      business_credit = #{record.businessCredit,jdbcType=INTEGER},
-      business_type = #{record.businessType,jdbcType=VARCHAR},
       authority_id = #{record.authorityId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qst.pojo.UserWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.qst.pojo.User" >
     update user
     <set >
       <if test="userName != null" >
@@ -326,25 +288,16 @@
       <if test="userImg != null" >
         user_img = #{userImg,jdbcType=VARCHAR},
       </if>
-      <if test="businessCredit != null" >
-        business_credit = #{businessCredit,jdbcType=INTEGER},
-      </if>
-      <if test="businessType != null" >
-        business_type = #{businessType,jdbcType=VARCHAR},
-      </if>
       <if test="authorityId != null" >
         authority_id = #{authorityId,jdbcType=INTEGER},
       </if>
       <if test="userPhone != null" >
         user_phone = #{userPhone,jdbcType=VARBINARY},
       </if>
-      <if test="businessRealname != null" >
-        business_realname = #{businessRealname,jdbcType=VARBINARY},
-      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.pojo.UserWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qst.pojo.User" >
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
       user_pwd = #{userPwd,jdbcType=VARCHAR},
@@ -352,11 +305,8 @@
       user_nickname = #{userNickname,jdbcType=VARCHAR},
       user_address = #{userAddress,jdbcType=VARCHAR},
       user_img = #{userImg,jdbcType=VARCHAR},
-      business_credit = #{businessCredit,jdbcType=INTEGER},
-      business_type = #{businessType,jdbcType=VARCHAR},
       authority_id = #{authorityId,jdbcType=INTEGER},
-      user_phone = #{userPhone,jdbcType=VARBINARY},
-      business_realname = #{businessRealname,jdbcType=VARBINARY}
+      user_phone = #{userPhone,jdbcType=VARBINARY}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qst.pojo.User" >
@@ -367,8 +317,6 @@
       user_nickname = #{userNickname,jdbcType=VARCHAR},
       user_address = #{userAddress,jdbcType=VARCHAR},
       user_img = #{userImg,jdbcType=VARCHAR},
-      business_credit = #{businessCredit,jdbcType=INTEGER},
-      business_type = #{businessType,jdbcType=VARCHAR},
       authority_id = #{authorityId,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>

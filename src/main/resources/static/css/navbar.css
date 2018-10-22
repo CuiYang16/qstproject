@@ -27,8 +27,8 @@
 }
 
 .navbar-text{
-	width: 65%;
-	margin-left:30%;
+	width: 70%;
+	margin-left:25%;
 	margin-top: 0.5%;
 	margin-bottom: 0.5%;
 }
@@ -50,14 +50,35 @@
 }
 
 .input-group input:focus {
-        outline: none;
-        border-color: #d9534f;
-        box-shadow: 0 0 5px rgba(217, 83, 79, 0.4);
-        border-radius: 5px;
+    outline: none;
+    border-color: #d9534f;
+    box-shadow: 0 0 5px rgba(217, 83, 79, 0.4);
+    border-radius: 5px;
  }
     
 #search-leftimg{
 	position: absolute;
 	top: 0;
-	left: 5%;
-}    
+	left: 10%;
+}  
+
+/*标签页  */
+.nav{
+	margin-top: 1%;
+	margin-left: 8%;
+	margin-right: 8%;
+	color: black;
+}  
+
+.nav-tabs li{
+	margin-left: 2%;
+}
+
+.nav-tabs li a{
+	line-height: 0.8;
+	
+}
+
+.nav-tabs .active a{
+    border-top: solid 2px #3498db !important;
+}

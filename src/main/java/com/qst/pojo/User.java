@@ -17,11 +17,9 @@ public class User {
 
     private String userImg;
 
-    private Integer businessCredit;
-
-    private String businessType;
-
     private Integer authorityId;
+
+    private byte[] userPhone;
 
     public Integer getUserId() {
         return userId;
@@ -79,27 +77,19 @@ public class User {
         this.userImg = userImg == null ? null : userImg.trim();
     }
 
-    public Integer getBusinessCredit() {
-        return businessCredit;
-    }
-
-    public void setBusinessCredit(Integer businessCredit) {
-        this.businessCredit = businessCredit;
-    }
-
-    public String getBusinessType() {
-        return businessType;
-    }
-
-    public void setBusinessType(String businessType) {
-        this.businessType = businessType == null ? null : businessType.trim();
-    }
-
     public Integer getAuthorityId() {
         return authorityId;
     }
 
     public void setAuthorityId(Integer authorityId) {
         this.authorityId = authorityId;
+    }
+
+    public byte[] getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(byte[] userPhone) {
+        this.userPhone = userPhone;
     }
 }
