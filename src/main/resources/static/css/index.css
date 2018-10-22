@@ -2,9 +2,39 @@
 #carousel-example-generic{
 	border-top: 1px solid #d5403c;
 	padding-top: 0.1%;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.item img{
+	max-height: 490px;
+	min-height: 490px;
 }
 
 #all{
 	margin-left: 2%;
 	margin-right: 2%;
+}
+
+#new-goods{
+	width: 90%;
+	border-bottom: 2px solid #3498db;
+	margin-left:5%;
+
+}
+
+#new-goods-top{
+	width:15%;
+	margin-top:1%;
+
+	padding:0.8%;
+	color:white;
+	font-size:130%;;
+	font-weight:600;
+	background-color: #3498db;
+	border-radius:5px 5px 0 0;
+}
+
+.thumbnail{
+	margin-top: 2%;
 }

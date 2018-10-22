@@ -1,0 +1,7 @@
+@charset "UTF-8";
+#foot{
+	border-top:2px solid #d5403c;
+	background-color: black;
+	max-height: 50px;
+	color: white;
+}
