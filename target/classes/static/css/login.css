@@ -1,0 +1,62 @@
+@charset "UTF-8";
+body{
+	margin: 0;
+}
+
+#logintop{
+	padding: 2%;
+	margin-left: 5%;
+	font-size: 200%;
+	font-weight: 900;
+	color: #d9534f;
+}
+
+#loginbg img{
+	max-height: 500px;
+}
+
+.loginpanel{
+	width: 25%;
+	height: 65%;
+	background-color: white;
+	position: absolute;
+	top: 20%;
+	right: 10%;
+	border-radius: 5px;
+}
+
+#loginhead{
+	font-size: 150%;
+	font-weight: 700;
+	color: #404040;
+	margin-left: 5%;
+	letter-spacing: 25px;
+}
+
+#login-links{
+	margin-right: 6%;
+}
+
+#login-links > p > a{
+	margin-right: 4%;
+}
+
+#login-links > p > a:link{
+	color: #777;
+	text-decoration: none;
+}
+#login-links > p > a:visited{
+	color: #777;
+	text-decoration: none;
+}
+
+#login-links > p > a:active{
+	color: #d9534f;
+	text-decoration: none;
+}
+
+#login-links > p > a:hover{
+	color: #d9534f;
+	text-decoration: none;
+}
+

@@ -13,8 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 
+	//首页
 	@RequestMapping("/")
 	public String toIndex() {
 		return "index";
+	}
+	
+	//登录
+	@RequestMapping("/login")
+	public String toLogin() {
+		
+		return "login";
+	}
+	
+	//注册
+	@RequestMapping("/register")
+	public String toRegister() {
+		
+		return "register";
 	}
 }

@@ -1,6 +1,20 @@
 @charset "UTF-8";
+#right-nav{
+	position: fixed;
+	top:0;
+	right: 0;
+	width: 3%;
+	height: 100%;
+	background-color: #404040;
+	display: none;
+}
+
+#topimg{
+	position: absolute;
+	bottom: 0;	
+}
 #carousel-example-generic{
-	border-top: 1px solid #d5403c;
+	border-top: 2px solid #398439;
 	padding-top: 0.1%;
 	margin-left: 5%;
 	margin-right: 5%;
@@ -18,7 +32,7 @@
 
 #new-goods{
 	width: 90%;
-	border-bottom: 2px solid #3498db;
+	border-bottom: 2px solid #398439;
 	margin-left:5%;
 
 }
@@ -31,10 +45,30 @@
 	color:white;
 	font-size:130%;;
 	font-weight:600;
-	background-color: #3498db;
+	background-color: #398439;
 	border-radius:5px 5px 0 0;
 }
 
 .thumbnail{
 	margin-top: 2%;
+}
+
+.price{
+	color: red;
+	font-size: 120%;
+	font-weight: 700;
+}
+
+.countdown{
+	color: #404040;
+	font-size: 130%;
+	font-weight: 700;	
+}
+
+.business{
+	position: absolute;
+	right: 8%;
+	margin-top: 5%;
+	font-size: 80%;
+	color:#808080;
 }

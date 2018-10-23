@@ -75,10 +75,24 @@
 }
 
 .nav-tabs li a{
-	line-height: 0.8;
+	line-height: 0.8;	
+	color: black;
 	
 }
 
-.nav-tabs .active a{
-    border-top: solid 2px #3498db !important;
+.other > a:hover{
+	border-color: #eee !important;
 }
+
+.other > a:focus{
+	border-color: #eee !important;
+}
+
+.other > a:visited{
+	border-color: #eee !important;
+}
+
+.nav-tabs .active a{
+    border-top: solid 2px #398439 !important;
+}
+

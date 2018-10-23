@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript"
+	src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/login.css">
+<title>登录</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="logintop">欢迎使用xxxx在线竞拍系统</div>
+			<div id="loginbg">
+				<img src="images/login/loginbg.jpg" width="100%" height="50%" />
+			</div>
+
+			<div class="loginpanel">
+				<div class="page-header">
+					<p id="loginhead">登录</p>
+				</div>
+				<form class="form-horizontal">
+					<div style="margin-left: 5%;">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">用户名</label>
+							<div class="col-sm-8">
+								<input type="email" class="form-control" id="inputEmail3"
+									placeholder="Username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" id="inputPassword3"
+									placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="inputverificationcode" class="col-sm-3 control-label">验证码</label>
+							<div class="col-sm-4">
+								<input type="verificationcode" class="form-control"
+									id="inputverificationcode">
+							</div>
+							<div class="col-sm-4">
+								<img src="images/20180308171836311.jpg" alt="" />
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-1 col-sm-10">
+							<div class="checkbox">
+								<label> <input type="checkbox"> Remember me
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-1 col-sm-10">
+							<button type="submit" class="btn btn-danger btn-block">Sign
+								in</button>
+						</div>
+					</div>
+
+				</form>
+				<div id="login-links">
+					<p class="text-right">
+						<a href="#">立即注册</a> <a href="#">忘记密码</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
