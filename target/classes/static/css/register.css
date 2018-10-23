@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+#registerhead {
+	max-height: 100px;
+	box-shadow: 5px 2px 6px #808080;
+}
+
+#registerhead img {
+	padding: 1%;
+	margin-left: 5%;
+}
+
+#registerhead>span>a:link {
+	font-size: 80%;
+	color: #d9534f;
+	text-decoration: none;
+	color: #d9534f;
+}
+
+#registerhead>span>a:active {
+	color: red;
+	font-size: 100%;
+	text-decoration: none;
+}
+
+#registerhead>span>a:hover {
+	color: red;
+	font-size: 100%;
+	text-decoration: none;
+}
+
+#registerhead>span>a:visited {
+	color: #d9534f;
+	text-decoration: none;
+}
+
+#registerbody::before {
+	content: "";
+	background: url("../images/Koala.jpg") no-repeat;
+	background-size: cover;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	filter: alpha(opacity = 30); /*支持 IE 浏览器*/
+	 -moz-opacity : 0.30;/*支持 FireFox 浏览器*/
+	 opacity : 0.30; /*支持 Chrome, Opera, Safari 等浏览器*/
+	width: 100%;
+	height: 100%;
+
+}
+
+#registerbody {
+	margin-top: 2%;
+	box-shadow: 5px 2px 6px #808080;
+}
+
+#registerbody p {
+	margin: 2%;
+	font-size: 150%;
+	font-weight: 700;
+	letter-spacing: 25px;
+}
